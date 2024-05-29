@@ -32,3 +32,26 @@ fit_control <- trainControl(method = "cv", number = 5)
 model <- train(Price ~ ., data = train_data, method = "lm", trControl = fit_control)
 print(summary(model))
 print(model)
+
+# Load the required packages
+library(caret)
+library(rpart)
+library(randomForest)
+
+# Data Splitting
+set.seed(123) # for reproducibility
+train_index <- createDataPartition(laptop_data$Price, p = 0.8, list = FALSE)
+train_data <- laptop_data[train_index, ]
+test_data <- laptop_data[-train_index, ]
+
+# Linear Regression (lm)
+lm_model <- lm(Price ~ ., data = train_data)
+print(summary(lm_model))
+
+# Decision Tree
+tree_model <- rpart(Price ~ ., data = train_data)
+print(tree_model)
+
+# Random Forest
+rf_model <- randomForest(Price ~ ., data = train_data)
+print(rf_model)
