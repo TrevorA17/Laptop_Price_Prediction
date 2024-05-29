@@ -56,3 +56,18 @@ laptop_data$RAM_Size <- as.numeric(as.character(laptop_data$RAM_Size))
 ram_price_corr <- cor(laptop_data$RAM_Size, laptop_data$Price)
 print("Correlation between RAM Size and Price:")
 print(ram_price_corr)
+
+# Load the required packages
+library(dplyr)
+
+# Convert RAM_Size and Storage_Capacity to factors
+laptop_data$RAM_Size <- as.factor(laptop_data$RAM_Size)
+laptop_data$Storage_Capacity <- as.factor(laptop_data$Storage_Capacity)
+
+# Perform ANOVA on Brand
+anova_brand <- aov(Price ~ Brand, data = laptop_data)
+print(summary(anova_brand))
+
+# Post-hoc tests for pairwise comparisons
+pairwise_tukey <- TukeyHSD(anova_brand)
+print(pairwise_tukey)
