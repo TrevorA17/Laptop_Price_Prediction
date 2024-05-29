@@ -52,6 +52,3 @@ print(summary(lm_model))
 tree_model <- rpart(Price ~ ., data = train_data)
 print(tree_model)
 
-# Random Forest
-rf_model <- randomForest(Price ~ ., data = train_data)
-print(rf_model)
