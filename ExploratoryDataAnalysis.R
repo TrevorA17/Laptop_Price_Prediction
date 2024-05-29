@@ -71,3 +71,24 @@ print(summary(anova_brand))
 # Post-hoc tests for pairwise comparisons
 pairwise_tukey <- TukeyHSD(anova_brand)
 print(pairwise_tukey)
+
+library(ggplot2)
+# Univariate Plots
+# Histogram for Price
+histogram_price <- ggplot(laptop_data, aes(x = Price)) +
+  geom_histogram(fill = "skyblue", color = "black", bins = 20) +
+  labs(title = "Histogram of Laptop Prices", x = "Price", y = "Frequency")
+print(histogram_price)
+
+# Boxplot for Screen Size
+boxplot_screen_size <- ggplot(laptop_data, aes(x = "", y = Screen_Size)) +
+  geom_boxplot(fill = "lightgreen", color = "black") +
+  labs(title = "Boxplot of Screen Size", x = "", y = "Screen Size")
+print(boxplot_screen_size)
+
+# Multivariate Plot
+# Scatter plot of Price vs. Processor Speed
+scatter_price_processor <- ggplot(laptop_data, aes(x = Processor_Speed, y = Price)) +
+  geom_point(color = "blue") +
+  labs(title = "Scatter Plot of Price vs. Processor Speed", x = "Processor Speed", y = "Price")
+print(scatter_price_processor)
